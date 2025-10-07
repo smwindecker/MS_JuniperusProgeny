@@ -42,7 +42,7 @@ library(iNEXT)
 # I load the database with seeds and genotyped plants to group them in "genetic profiles". This dataset contains the multilocus genotypes of all dispersed seeds plus 105 samples corresponding to mother trees to facilitate progeny assignments. The same 12 polymorphic markers were used for the seed genotype (seed endocarp) and for the mother plant genotype (leaf tissue). The data of the mother plants are useful especially in the case of seeds found under focal deposition sites and to consider the closest junipers neighborhood.
 
 ```{r data loading}
-seeds_trees <- read.csv("~/Documents/GitHub/MS_JuniperusProgeny/Data/seeds_trees.csv", sep=";")
+seeds_trees <- read.csv("../Data/seeds_trees.csv", sep=";")
 ```
 
 # Prepare a dataset for use with allelematch
@@ -75,7 +75,7 @@ This is the end of the computed genetic profile assignment. These results are re
 #I load a new dataset with all the information of each seed, in this dataset the trees do not appear anymore.
 
 ```{r New data input and cleaning}
-dataset <- read_delim("~/Documents/GitHub/MS_JuniperusProgeny/Data/full_dataset.csv", 
+dataset <- read_delim("../Data/full_dataset.csv", 
     delim = ";", escape_double = FALSE, trim_ws = TRUE) # Loading dataset
 dataset<-tibble::column_to_rownames(dataset, var = "seed_code") #Column to row names
 #names(dataset)
@@ -477,7 +477,7 @@ assoc(head(dt4, 10), shade = TRUE, las=3)
 #Spatial pattern of genotyped seeds across MICROHABITAT 
 # Not used in the manuscript!
 ```{r Patterns of seed rain across AREAS-MH}
-coord <- read_delim("~/Documents/GitHub/MS_JuniperusProgeny/Data/coord.csv", 
+coord <- read_delim("../Data/coord.csv", 
     delim = ",", escape_double = FALSE, trim_ws = TRUE) #Loading locations dataset of focal deposition sites
 
 dataset<-dataset%>% left_join(coord) # merge coords with general dataset
@@ -511,7 +511,7 @@ ggarrange(p5,p4,p3,ncol = 3, common.legend = TRUE, legend = "right",widths = 1,
 
 ```{r}
 #Loading locations dataset
-data_seedrain <- read_delim("~/Documents/GitHub/MS_JuniperusProgeny/Data/seed_rain_raw.csv", 
+data_seedrain <- read_delim("../Data/seed_rain_raw.csv", 
     delim = ";", escape_double = FALSE, trim_ws = TRUE) # Loading data of seed rain (nº seeds per deposition site and nº seeds/m2)
 
 data_seedrain<-as.data.frame(data_seedrain)
@@ -1240,7 +1240,7 @@ ggarrange(plot_area_iNEXT,plot_mh_iNEXT,plot_FRU_iNEXT) # Figure  S3
 # Now, I will explore the maternal properties related to kinship. For this I load the relatedness dataset between the maternal genotypes of the seeds. These values are closer to 1 the more similar the genotype between seed pairs. I calculated them following the method proposed by Queller and Goodnight (1989) in GenAlex. 
 
 ```{r data loading}
-matrix <- read_delim("~/Documents/GitHub/MS_JuniperusProgeny/Data/relatedness_matrix.csv", 
+matrix <- read_delim("../Data/relatedness_matrix.csv", 
     delim = ";", escape_double = FALSE, trim_ws = TRUE) # Queller and Goodnight (1989)  relatedness estimator - Mean. // Cumputed by GenAlex
 
 # Colappsing attributes for retain in the name
