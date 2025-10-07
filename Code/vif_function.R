@@ -4,6 +4,7 @@ vif_func<-function(in_frame,thresh=10,trace=T,...){
 	require(fmsb)
 	
 	if(class(in_frame) != 'data.frame') in_frame<-data.frame(in_frame)
+	names(in_frame) <- gsub(" ", "_", names(in_frame))
 	
 	#get initial vif value for all comparisons of variables
 	vif_init<-NULL
